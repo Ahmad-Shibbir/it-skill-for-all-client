@@ -1,5 +1,6 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import { useContext } from 'react';
+import { Image } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,20 +8,19 @@ import { Link } from 'react-router-dom';
 // import logo from '../../../assets/logo.ico'
 import { AuthContext } from '../../../Contex/AuthProvider/AuthProvider';
 
- 
-const Header = () => {
-    const {providerLogin} = useContext(AuthContext);
-    const {user} = useContext(AuthContext)
-    const googleProvider = new GoogleAuthProvider()
 
-    const handleGoogleSignIn =() =>{
-        providerLogin(googleProvider)
-        .then(result=> {
-            const user = result.user;
-            console.log(user);
-        })
-        .catch(e=> console.log(e))
+const Header = () => {
+    const { providerLogin } = useContext(AuthContext);
+    const { user, logOut} = useContext(AuthContext)
+  
+
+    const handleLogOut= () =>{
+        logOut()
+        .then(()=>{} )
+        .catch(e => console.error(e))
     }
+
+ 
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -38,19 +38,39 @@ const Header = () => {
 
                         </Nav>
                         <Nav>
-                        <Nav.Link ><Link onClick={handleGoogleSignIn} to='/blog'>Google login</Link></Nav.Link>
-                            <Nav.Link href="#deets">{user.displayName}</Nav.Link>
+                            <Nav.Link ></Nav.Link>
+                            <Nav.Link href="#deets">
+                                {
+                                    user?.uid ?
+                                        <>
+                                           <span>{user?.displayName}</span>
+                                           <button onClick={handleLogOut}>Logout</button>
+                                        </>
+                                        
+                                        : <div>
+                                            <Nav.Link ><Link to='/login'>Login</Link></Nav.Link>
+                                            <Nav.Link ><Link to='/register'>Register</Link></Nav.Link>
+                                        </div>
+                                }
+                            </Nav.Link>
                             <Nav.Link eventKey={2} href="#memes">
-                                <img src={user.photoURL} alt="" />
-                                email
+                                { user?.photoURL?
+                                    <Image
+                                        style={{ height: '30px' }} roundedCircle
+                                        src={user.photoURL}>
+                                    </Image>
+                                    :<h4>photo</h4>
+                                }
+
+                                
                             </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            
 
-            
+
+
         </div>
 
     );
