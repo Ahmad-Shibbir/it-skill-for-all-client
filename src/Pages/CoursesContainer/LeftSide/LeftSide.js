@@ -10,7 +10,7 @@ const LeftSide = () => {
     const [CoursesName, setCoursesName] = useState([])
 
     useEffect(()=>{
-        fetch('http://localhost:5000/courses-name')
+        fetch('https://it-skills-for-all-server.vercel.app/courses-name')
         .then(res=> res.json())
         .then(data=> setCoursesName(data))
     },[])

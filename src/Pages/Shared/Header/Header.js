@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
-// import logo from '../../../assets/logo.ico'
+import logo1 from '../../../assets/logo1.ico'
 import { AuthContext } from '../../../Contex/AuthProvider/AuthProvider';
 // import { FaChalkboardTeache } from "react-icons/fa";
 
@@ -21,12 +21,15 @@ const Header = () => {
         .catch(e => console.error(e))
     }
 
+    const displayUserName= ()=>{
+        console.log("hellow");
+    }
  
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
                 <Container>
-                    {/* <img src={logo} alt="" width="60" height="60" /> */}
+                    <img src={logo1} alt="" width="60" height="60" />
                     <Navbar.Brand href="#home">  ITskills4all</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
@@ -53,17 +56,22 @@ const Header = () => {
                                         
                                         : <div>
                                             <Nav.Link ><Link to='/login'>Login</Link></Nav.Link>
-                                            <Nav.Link ><Link to='/register'>Register</Link></Nav.Link>
+                                           
                                         </div>
                                 }
                             </Nav.Link>
                             <Nav.Link eventKey={2} href="#memes">
                                 { user?.photoURL?
-                                    <Image
+                                    <Image  
                                         style={{ height: '30px' }} roundedCircle
                                         src={user.photoURL}>
+                                            
                                     </Image>
-                                    :<h4>photo</h4>
+                                    :<Image 
+                                    style={{ height: '30px' }} roundedCircle
+                                    src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXZ5GsZzyJ6Jjqi3aqJl_s4uCu1bW_Cf6nfi7TudP0gFjIEOy3XroUucaADK7Ctljx2uQ&usqp=CAU'>
+                                        
+                                </Image>
                                 }
 
                                 
