@@ -1,0 +1,13 @@
+.home-container{
+    background-color: antiquewhite;
+    text-align: center;
+    /* margin: 10px ;
+     */
+     padding: 10px;
+}
+
+.carousel-container{
+    width: 85%;
+    margin: 20px auto 10px;
+    border: 10px solid aliceblue;
+}

@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 // import logo from '../../../assets/logo.ico'
 import { AuthContext } from '../../../Contex/AuthProvider/AuthProvider';
+import { AiFillBank } from "react-icons/fa";
 
 
 const Header = () => {
