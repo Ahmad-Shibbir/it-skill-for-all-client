@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import './CourseDetail.css'
 
 const CourseDetails = () => {
-    const { duration, name, ratings, instructor, skills, img, description ,level} = useLoaderData();
+    const { id,duration, name, ratings, instructor, skills, img, description ,level} = useLoaderData();
     return (
         <div>
             <div className='title-container'>
@@ -47,7 +47,7 @@ const CourseDetails = () => {
             </div>
             <br />
             <div className='premium'>
-            <Button variant="outline-info">Get premium access</Button>
+            <Button variant="outline-info"> <Link to= {`/checkout/${id}`} style={{textDecoration:'none'}}>Get premium access </Link> </Button>
             </div>
             
 
