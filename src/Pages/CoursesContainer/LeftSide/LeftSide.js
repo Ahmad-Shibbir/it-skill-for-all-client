@@ -1,7 +1,9 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
 
 const LeftSide = () => {
 
@@ -16,12 +18,19 @@ const LeftSide = () => {
     console.log(CoursesName);
     return (
         <div>
-            <h1>This from left side bar {CoursesName.length}</h1>
-            {
-                CoursesName.map(name=> <p key={name.id} >
-                    <Link to={`/course-details/${name.id}`}>{name.name}</Link> </p>)
-            }
+            
 
+            <div style={{margin:'12px 0 0 0'}} className=' margin-top d-flex mx-auto flex-column '>
+            {
+                CoursesName.map(name=> <p  key={name.id} >
+                    <Button style={{width:'250px', margin:'auto 8% '}} variant="outline-info">
+                        <Link style={{textDecoration:'none'}} to={`/course-details/${name.id}`}>{name.name}</Link>
+                    </Button>{' '}
+                     </p>)
+            }
+            </div>
+           
+           
 
         </div>
     );

@@ -2,24 +2,45 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 const Courses = () => {
     const [Courses, setCourses] = useState([])
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch('http://localhost:5000/courses-name')
-        .then(res=> res.json())
-        .then(data=> setCourses(data))
-    },[])
-    
+            .then(res => res.json())
+            .then(data => setCourses(data))
+    }, [])
+
     console.log(Courses);
     return (
         <div>
-            <h1>This from Main and card {Courses.length}</h1>
-            {
-                Courses.map(name=> <p key={name.id} >
-                    <Link to={`/course-details/${name.id}`}>{name.name}</Link> </p>)
-            }
+            <div className='mb-2 d-flex flex-wrap justify-content-center justify-content-around  '>
+                {
+                    Courses.map(course => <div className='m-8'>
+                        <Card style={{ width: '18rem',height:'95%', margin:'10px' }} className='mb-8' >
+                            <Card.Img variant="top" src={course.img} />
+                            <Card.Body>
+                                <Card.Title >
+                                    {course.name}
+                                </Card.Title>
+                                <Card.Text>
+                                    {/* {course.description} */}
+                                </Card.Text>
+                                <Button variant="outline-info" >
+                                    <Link style={{textDecoration:'none'}} to={`/course-details/${course.id}`}>checkout</Link>
+                                </Button>
+                            </Card.Body>
+                        </Card>
+                    </div>)
+                }
+            </div>
+
+
+
+
 
 
         </div>
