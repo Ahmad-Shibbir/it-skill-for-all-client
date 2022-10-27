@@ -30,7 +30,7 @@ const Courses = () => {
                                     {/* {course.description} */}
                                 </Card.Text>
                                 <Button variant="outline-info" >
-                                    <Link style={{textDecoration:'none'}} to={`/course-details/${course.id}`}>checkout</Link>
+                                    <Link style={{textDecoration:'none'}} to={`/course-details/${course.id}`}>Course Details </Link>
                                 </Button>
                             </Card.Body>
                         </Card>

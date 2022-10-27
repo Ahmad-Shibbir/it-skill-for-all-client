@@ -1,0 +1,36 @@
+.title-container{
+    /* height: 500px; */
+    background-color: antiquewhite;
+    text-align: center;
+    padding: 15px;
+    /* margin: 15px; */
+}
+
+
+.info-container{
+    display: flex;
+
+}
+.info-container img{
+    width: 80%;
+}
+.course-img {
+    margin-top: 25px;
+    width: 70%;
+}
+.info{
+    margin: auto;
+    width: 25%;
+    text-align: start;
+    border-bottom: 2px solid black;
+}
+.description{
+   display: grid;
+   grid-template-columns: 1fr 3fr ;
+   margin: 40px 10%;
+   border-bottom: 2px solid black;
+}
+.premium{
+    text-align: center;
+    margin-bottom: 10px;
+}

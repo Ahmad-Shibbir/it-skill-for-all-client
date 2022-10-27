@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contex/AuthProvider/AuthProvider';
 // import './Login.css'
 
@@ -16,6 +16,8 @@ const Login = () => {
     
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
    const handleSignin = event=>{
         event.preventDefault();
@@ -31,7 +33,7 @@ const Login = () => {
             console.log(user);
             form.reset();
             setError("");
-            navigate('/');
+            navigate(from, {replace: true});
         })
         .catch(error => {
             setError(error.message);
@@ -44,6 +46,7 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
+            navigate(from, {replace: true});
         })
         .catch(e => console.log(e))
     }
@@ -52,6 +55,7 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
+            navigate(from, {replace: true});
         })
         .catch(error => {
             setError(error.message);
