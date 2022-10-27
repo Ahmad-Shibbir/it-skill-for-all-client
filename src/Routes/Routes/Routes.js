@@ -4,6 +4,7 @@ import Blog from "../../Pages/Blog/Blog";
 import CheckOut from "../../Pages/CheckOut/CheckOut";
 import CourseDetails from "../../Pages/CoursesContainer/CourseDetails/CourseDetails";
 import CoursesContainer from "../../Pages/CoursesContainer/CoursesContainer";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import FAQ from "../../Pages/FAQ/FAQ";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
@@ -57,7 +58,13 @@ export const routes = createBrowserRouter([
             element:<Register></Register>
 
            }
+          
 
         ]
-    }
+    },
+    {
+        path:'*',
+        element:<ErrorPage></ErrorPage>
+
+       }
 ])
