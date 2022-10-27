@@ -1,5 +1,6 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -8,6 +9,7 @@ import { AuthContext } from '../../Contex/AuthProvider/AuthProvider';
 // import './Login.css'
 
 const Login = () => {
+    const [error, setError] = useState();
  
     const {signIn, providerLogin} = useContext(AuthContext);
     const navigate = useNavigate()
@@ -28,9 +30,13 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             form.reset();
+            setError("");
             navigate('/');
         })
-        .catch(e => console.error(e))
+        .catch(error => {
+            setError(error.message);
+            
+        })
    }
 
    const handleGoogleSignIn = () => {
@@ -47,7 +53,10 @@ const Login = () => {
             const user = result.user;
             console.log(user);
         })
-        .catch(e => console.log(e))
+        .catch(error => {
+            setError(error.message);
+            console.log(error);
+        })
     }
 
     return (
@@ -64,16 +73,17 @@ const Login = () => {
                     <Form.Control name='password' type="password" placeholder="Password" required/>
                 </Form.Group>
 
-                <Form.Text className="text-danger">
-                    We'll never share your email with anyone else.
-                </Form.Text>
-
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
+                
+                        <br />
+                <Form.Text className="text-danger">
+                    {error}
+                </Form.Text>
             </Form>
-
-            <button onClick={handleGoogleSignIn}>Google</button>
+           
+            <button style={{margin: '15px 15px 8px 0'}} onClick={handleGoogleSignIn}>Google</button>
             <button onClick={handleGithubSignIn}>Github</button>
             <br />
             <p><Link to='/register'>don't have any account?</Link></p>

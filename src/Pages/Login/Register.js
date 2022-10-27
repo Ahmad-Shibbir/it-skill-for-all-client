@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -7,6 +7,7 @@ import { AuthContext } from '../../Contex/AuthProvider/AuthProvider';
 
 
 const Register = () => {
+    const [error, setError] = useState();
     const {createUser} = useContext(AuthContext);
     const handleSubmit = event=>{
         event.preventDefault();
@@ -23,7 +24,10 @@ const Register = () => {
             const user =  result.user;
             console.log(user);
         })
-        .catch(e => console.error(e));
+        .catch(error => {
+            setError(error.message);
+            
+        })
     }
 
  
@@ -51,13 +55,14 @@ const Register = () => {
                     <Form.Control name='password' type="password" placeholder="Password" required/>
                 </Form.Group>
 
-                    <Form.Text className="text-danger">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                
                 <Button variant="primary" type="submit">
                     Register
                 </Button>
+                
+                        <br />
+                <Form.Text className="text-danger">
+                    {error}
+                </Form.Text>
             </Form>
             <br />
             <p><Link to='/login'>already have an account</Link></p>
